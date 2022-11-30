@@ -1,6 +1,5 @@
 // Copyright Ben de Hullu. All Rights Reserved.
 
-
 #include "InstanceData.h"
 #include "Engine/InstancedStaticMesh.h"
 #include "Components/InstancedStaticMeshComponent.h"
@@ -61,7 +60,7 @@ void FInstanceHandle::UpdateTransform( const FTransform& T ) const
 		
 		if(UInstancedStaticMeshComponent* CollisionComp = GetCollisionInstanceComponent())
 		{
-			CollisionComp->UpdateInstanceTransform( HandleID, T, false, false );
+			CollisionComp->UpdateInstanceTransform( CollisionHandleID, T, false, false );
 		}
 	}
 }
@@ -78,7 +77,7 @@ void FInstanceHandle::UpdateScale( const FVector& NewScale ) const
 		
 		if(UInstancedStaticMeshComponent* CollisionComp = GetCollisionInstanceComponent())
 		{
-			CollisionComp->UpdateInstanceTransform( HandleID, T, false, false );
+			CollisionComp->UpdateInstanceTransform( CollisionHandleID, T, false, true );
 		}
 	}
 }
