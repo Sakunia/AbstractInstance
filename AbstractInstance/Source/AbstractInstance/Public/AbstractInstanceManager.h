@@ -122,7 +122,7 @@ public:
 	
 	/* Called from the cvar sink. */
 	void StartDrawDebug(bool bEnabled);
-	void HideAllInstance(bool bHidden);
+	void HideAllInstance(bool bIsHidden);
 
 	FORCEINLINE bool CanLazyLoad() const { return bAllowLazySpawn; }
 	

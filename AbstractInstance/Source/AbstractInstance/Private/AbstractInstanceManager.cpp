@@ -301,11 +301,11 @@ void AAbstractInstanceManager::SetInstanced( AActor* OwnerActor, const FTransfor
 	{
 		FTransform ZeroScaleTransform = InstanceSpawnLocation;
 		ZeroScaleTransform.SetScale3D(FVector(0.01));
-		HandleID = InstanceEntry->InstancedStaticMeshComponent->AddInstanceWorldSpace( ZeroScaleTransform );		
+		HandleID = InstanceEntry->InstancedStaticMeshComponent->AddInstance( ZeroScaleTransform, true );		
 	}
 	else
 	{
-		HandleID = InstanceEntry->InstancedStaticMeshComponent->AddInstanceWorldSpace( InstanceSpawnLocation );
+		HandleID = InstanceEntry->InstancedStaticMeshComponent->AddInstance( InstanceSpawnLocation, true );
 	}
 
 	// Setup Collision
@@ -334,7 +334,7 @@ void AAbstractInstanceManager::SetInstanced( AActor* OwnerActor, const FTransfor
 		}
 
 		EditorCheck( BatchCollisionComponent );
-		CollisionID = BatchCollisionComponent->AddInstanceWorldSpace( InstanceSpawnLocation );
+		CollisionID = BatchCollisionComponent->AddInstance( InstanceSpawnLocation, true );
 	}
 
 	OutHandle->HandleID = HandleID;
@@ -691,11 +691,11 @@ void AAbstractInstanceManager::StartDrawDebug( bool bEnabled )
 	}
 }
 
-void AAbstractInstanceManager::HideAllInstance( bool bHidden )
+void AAbstractInstanceManager::HideAllInstance( bool bIsHidden )
 {
 	for( const TTuple< FName, FInstanceComponentData >& InstanceData: InstanceMap )
 	{
-		InstanceData.Value.InstancedStaticMeshComponent->SetVisibility( !bHidden );
+		InstanceData.Value.InstancedStaticMeshComponent->SetVisibility( !bIsHidden );
 	}
 }
 
